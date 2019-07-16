@@ -1,19 +1,28 @@
 package dao;
 
-import interfaces.GenericInterface;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
-public class AlunoDao implements GenericInterface{
+import connection.ConnectionFactory;
+import mensagens.Mensagens;
+import model.Aluno;
 
-	@Override
-	public boolean salvar() {
-		// TODO Auto-generated method stub
-		return false;
+public class AlunoDao{
+
+	public String salvar(Aluno aluno) throws SQLException{
+		
+		try {
+			 String sql = "insert into tabela(coluna1, coluna2, coluna3)values(?,?,?)";
+			   PreparedStatement stmt = ConnectionFactory.getConnectionFactory().prepareStatement(sql);
+			   stmt.setString(1, "parametro1");
+			   stmt.setString(2, "parametro2");
+			   stmt.setString(3, "parametro3");
+			   stmt.execute();
+			   stmt.close(); 
+			   
+			   return Mensagens.salvar();
+		} catch (Exception e) {
+			return Mensagens.erroSalvar(e);
+		}
 	}
-
-	@Override
-	public boolean excluir() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }
