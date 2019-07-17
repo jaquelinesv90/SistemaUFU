@@ -1,10 +1,15 @@
 package controller;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
-import service.AlunoService;
 import model.Aluno;
+import model.Refeicao;
+import service.AlunoService;
+import service.RefeicaoService;
+import enumerador.DiaEnum;
 
 public class Principal {
 	
@@ -15,10 +20,16 @@ public class Principal {
 		System.out.println("3 - Consulta da Refeição do dia");
 		System.out.println("4 - Consulta das refeições realizadas na semana por aluno");
 		
+		System.out.println("5 -Excluir um aluno");
+		System.out.println("6 -Excluir um cardápio por dia da semana");
+		
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Escolha uma opção:");
 		
 		int opcao = scanner.nextInt();
+		
+		Refeicao refeicao = new Refeicao();
+		RefeicaoService refeicaoService = new RefeicaoService();
 		
 		switch (opcao) {
 		case 1:
@@ -37,14 +48,37 @@ public class Principal {
 			break;
 		
 		case 2:
+			refeicao.setTipoArroz("parboilizado");
+			refeicao.setTipoFeijao("carioca");
+			refeicao.setTipoCarne("frango assado");
+			refeicao.setTipoSalada("alface");
+			refeicao.setDiaSemana("Segunda-feira");
+			
+			refeicaoService.salvar(refeicao);
 			
 			break;
 	
 		case 3:
-	
+			String formatter = new SimpleDateFormat("EEEE").format(new Date());
+			System.out.print(formatter);
+			
+			refeicao = new Refeicao();
+			
+			refeicao = refeicaoService.consultaPorDia(formatter);
+			
+			System.out.println();
+			System.out.println();
+			System.out.println();
+			System.out.println();
+			System.out.println();
+			System.out.println();
+			
 			break;
 			
 		case 4:
+			
+			
+			
 			
 			break;
 		default:

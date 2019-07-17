@@ -12,7 +12,8 @@ public class AlunoService  implements GenericInterface{
 	
 	@Override
 	public void salvar(Object entidade) throws SQLException {
-		dao.salvar((Aluno)entidade);
+		String msg = dao.salvar((Aluno)entidade);
+		System.out.println(msg);
 	}
 
 	@Override

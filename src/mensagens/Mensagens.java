@@ -10,4 +10,8 @@ public class Mensagens {
 		return "Erro ao salvar" + e;
 	}
 	
+	public static String erroConsultar(Exception e){
+		return "Erro ao consultar" + e;
+	}
+	
 }

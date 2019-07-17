@@ -6,6 +6,7 @@ public class Refeicao {
 	private String tipoFeijao;
 	private String tipoCarne;
 	private String tipoSalada;
+	private String diaSemana;
 	
 	public Refeicao(){
 		
@@ -41,5 +42,13 @@ public class Refeicao {
 
 	public void setTipoSalada(String tipoSalada) {
 		this.tipoSalada = tipoSalada;
+	}
+
+	public String getDiaSemana() {
+		return diaSemana;
+	}
+
+	public void setDiaSemana(String diaSemana) {
+		this.diaSemana = diaSemana;
 	}
 }
