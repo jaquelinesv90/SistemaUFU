@@ -6,6 +6,5 @@ public interface GenericInterface {
 	
 	public void salvar(Object entidade) throws SQLException;
 	
-	public boolean excluir();
 
 }

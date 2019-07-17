@@ -16,10 +16,4 @@ public class AlunoService  implements GenericInterface{
 		System.out.println(msg);
 	}
 
-	@Override
-	public boolean excluir() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

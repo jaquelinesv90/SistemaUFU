@@ -9,7 +9,6 @@ import model.Aluno;
 import model.Refeicao;
 import service.AlunoService;
 import service.RefeicaoService;
-import enumerador.DiaEnum;
 
 public class Principal {
 	
@@ -19,10 +18,7 @@ public class Principal {
 		System.out.println("2 - Cadastro de Refeições");
 		System.out.println("3 - Consulta da Refeição do dia");
 		System.out.println("4 - Consulta das refeições realizadas na semana por aluno");
-		
-		System.out.println("5 -Excluir um aluno");
-		System.out.println("6 -Excluir um cardápio por dia da semana");
-		
+			
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Escolha uma opção:");
 		
@@ -66,25 +62,19 @@ public class Principal {
 			
 			refeicao = refeicaoService.consultaPorDia(formatter);
 			
-			System.out.println();
-			System.out.println();
-			System.out.println();
-			System.out.println();
-			System.out.println();
-			System.out.println();
+			System.out.println("Cardápio do dia");
+			System.out.println("Tipo de Arroz:" + refeicao.getTipoArroz());
+			System.out.println("Tipo de Feijão:"+ refeicao.getTipoFeijao());
+			System.out.println("Tipo de Carne:"+ refeicao.getTipoCarne());
+			System.out.println("Tipo de Salada:"+ refeicao.getTipoSalada());
 			
 			break;
 			
 		case 4:
 			
-			
-			
-			
 			break;
 		default:
 			break;
 		}
-		
 	}
-
 }

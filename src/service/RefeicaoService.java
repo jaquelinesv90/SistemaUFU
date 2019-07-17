@@ -22,12 +22,4 @@ public class RefeicaoService  implements GenericInterface {
 		return dao.consultaPorDia(dia);
 	}
 	
-	@Override
-	public boolean excluir() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	
-	
 }
