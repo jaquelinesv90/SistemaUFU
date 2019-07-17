@@ -12,11 +12,15 @@ public class AlunoDao{
 	public String salvar(Aluno aluno) throws SQLException{
 		
 		try {
-			 String sql = "insert into tabela(coluna1, coluna2, coluna3)values(?,?,?)";
+			 String sql = "insert into aluno(nome, cpf, matricula, telefone, curso, periodo)values(?,?,?,?,?,?)";
 			   PreparedStatement stmt = ConnectionFactory.getConnectionFactory().prepareStatement(sql);
-			   stmt.setString(1, "parametro1");
-			   stmt.setString(2, "parametro2");
-			   stmt.setString(3, "parametro3");
+			   stmt.setString(1, aluno.getNome());
+			   stmt.setLong(2, aluno.getCpf());
+			   stmt.setLong(3, aluno.getMatricula());
+			   stmt.setLong(4, aluno.getTelefone());
+			   stmt.setString(5, aluno.getCurso());
+			   stmt.setLong(6, aluno.getPeriodo());
+			   
 			   stmt.execute();
 			   stmt.close(); 
 			   

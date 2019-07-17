@@ -1,8 +1,10 @@
 package interfaces;
 
+import java.sql.SQLException;
+
 public interface GenericInterface {
 	
-	public String  salvar(Object entidade);
+	public void salvar(Object entidade) throws SQLException;
 	
 	public boolean excluir();
 

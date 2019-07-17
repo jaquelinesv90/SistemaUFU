@@ -9,7 +9,7 @@ import java.sql.SQLException;
 	{
 	    try{
 	  Class.forName("org.postgresql.Driver");
-	  return DriverManager.getConnection("jdbc:postgresql://localhost:5432/SistemUFU", "postgre", "admin");
+	  return DriverManager.getConnection("jdbc:postgresql://localhost:5432/SistemaUFU", "postgre", "admin");
 	    }
 	    catch(ClassNotFoundException e)
 	    {
