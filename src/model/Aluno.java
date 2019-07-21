@@ -2,6 +2,7 @@ package model;
 
 public class Aluno {
 	
+	private int idAluno;
 	private String nome;
 	private long cpf;
 	private long matricula;
@@ -59,5 +60,13 @@ public class Aluno {
 
 	public void setPeriodo(long periodo) {
 		this.periodo = periodo;
+	}
+
+	public int getIdAluno() {
+		return idAluno;
+	}
+
+	public void setIdAluno(int idAluno) {
+		this.idAluno = idAluno;
 	}
 }

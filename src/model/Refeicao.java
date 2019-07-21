@@ -2,6 +2,7 @@ package model;
 
 public class Refeicao {
 	
+	private int idRefeicao;
 	private String tipoArroz;
 	private String tipoFeijao;
 	private String tipoCarne;
@@ -50,5 +51,13 @@ public class Refeicao {
 
 	public void setDiaSemana(String diaSemana) {
 		this.diaSemana = diaSemana;
+	}
+
+	public int getIdRefeicao() {
+		return idRefeicao;
+	}
+
+	public void setIdRefeicao(int idRefeicao) {
+		this.idRefeicao = idRefeicao;
 	}
 }
