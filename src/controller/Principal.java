@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+import enumerador.DiaEnum;
 import model.Aluno;
 import model.Refeicao;
 import service.AlunoService;
@@ -16,10 +17,10 @@ public class Principal {
 	public static void main(String[] args) throws SQLException {
 
 		System.out.println("Sistema da Universidade Federal de Uberlândia");
-		System.out.println("1 - Cadastro de alunos");
-		System.out.println("2 - Cadastro de Refeições");
+		System.out.println("1 - Cadastro de alunos");//
+		System.out.println("2 - Cadastro de Refeições");//
 		System.out.println("3 - Consulta da Refeição do dia");
-		System.out.println("4 - Consulta Aluno");
+		System.out.println("4 - Consulta Aluno");//
 		System.out.println("5 - Consulta das refeições realizadas na semana por aluno");
 
 		@SuppressWarnings("resource")
@@ -75,8 +76,38 @@ public class Principal {
 			System.out.println("Digite o Tipo de Salada");
 			refeicao.setTipoSalada(scanner.next());
 
-			System.out.println("Digite o dia da semana");
-			refeicao.setDiaSemana(scanner.next());
+			System.out.println("Escolha o dia da semana");
+			System.out.println("1 -Segunda");
+			System.out.println("2 -Terça");
+			System.out.println("3 -Quarta");
+			System.out.println("4 -Quinta");
+			System.out.println("5 -Sexta");
+			System.out.println("6 -Sábado");
+			
+			opcao = 0;
+			opcao = scanner.nextInt();
+			if(opcao == 1){
+				refeicao.setDiaSemana(DiaEnum.SEGUNDA.getDescricao());
+			}
+			if(opcao == 2){
+				refeicao.setDiaSemana(DiaEnum.TERCA.getDescricao());
+			}
+			
+			if(opcao == 3){
+				refeicao.setDiaSemana(DiaEnum.QUARTA.getDescricao());
+			}
+			
+			if(opcao == 4){
+				refeicao.setDiaSemana(DiaEnum.QUINTA.getDescricao());
+			}
+			
+			if(opcao == 5){
+				refeicao.setDiaSemana(DiaEnum.SEXTA.getDescricao());
+			}
+			
+			if(opcao == 6){
+				refeicao.setDiaSemana(DiaEnum.SABADO.getDescricao());
+			}
 
 			refeicaoService.salvar(refeicao);
 
@@ -115,13 +146,6 @@ public class Principal {
 				System.out.println("Digite a matricula do aluno");
 				aluno = alunoService.pesquisaPorMatricula(scanner.nextInt());
 			} else if(opcao == 3){
-				System.out.println("Escolha entre os cursos");
-				System.out.println("Ciência da Computação");
-				System.out.println("Sistemas da informação");
-				System.out.println("Engenharia da computação");
-				System.out.println("Analise e Desenvolvimento de sistemas");
-				System.out.println("Digite o curso");
-
 				System.out.println("Digite o curso");
 				aluno = alunoService.pesquisaPorCurso(scanner.next());
 			}

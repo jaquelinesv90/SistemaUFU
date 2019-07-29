@@ -64,7 +64,7 @@ public class AlunoDao {
 		Aluno aluno = new Aluno();
 
 		try {
-			String sql = "select * from aluno a where a.matricula = ?)";
+			String sql = "select * from aluno a where a.matricula = ?";
 			PreparedStatement stmt = ConnectionFactory.getConnectionFactory()
 					.prepareStatement(sql);
 
@@ -93,7 +93,7 @@ public class AlunoDao {
 		Aluno aluno = new Aluno();
 		try {
 
-			String sql = "select * from aluno a where a.curso like ?)";
+			String sql = "select * from aluno a where a.curso like ?";
 			PreparedStatement stmt = ConnectionFactory.getConnectionFactory()
 					.prepareStatement(sql);
 
@@ -109,7 +109,7 @@ public class AlunoDao {
 				aluno.setPeriodo(resultado.getInt("periodo"));
 			}
 			stmt.close();
-
+			
 			return aluno;
 
 		} catch (Exception e) {
