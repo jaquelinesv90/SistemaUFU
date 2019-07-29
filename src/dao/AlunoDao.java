@@ -35,7 +35,7 @@ public class AlunoDao {
 		Aluno aluno = new Aluno();
 		try {
 
-			String sql = "select * from aluno a where a.nome like ?)";
+			String sql = "select * from aluno a where a.nome like ?";
 			PreparedStatement stmt = ConnectionFactory.getConnectionFactory()
 					.prepareStatement(sql);
 

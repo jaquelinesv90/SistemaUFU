@@ -1,17 +1,25 @@
+select * from aluno;
+
+select * from refeicao;
+
 CREATE TABLE public.aluno
 (
-  "nome" character varying,
-  "cpf" bigint,
-  "matricula" bigint,
-  "telefone" bigint,
-  "curso" character varying,
-  "periodo" bigint
+  idAluno SERIAL PRIMARY KEY, 
+  nome text,
+  cpf bigint,
+  matricula bigint,
+  telefone bigint,
+  curso text,
+  periodo bigint
+
 )
 
 CREATE TABLE public.refeicao
 (
-  "tipoArroz" character varying,
-  "tipoFeijao" character varying,
-  "tipoCarne" character varying,
-  "tipoSalada" character varying
+  idRefeicao SERIAL PRIMARY KEY,
+  tipoArroz text,
+  tipoFeijao text,
+  tipoCarne  text,
+  tipoSalada text,
+  diaSemana   text
 )

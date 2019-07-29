@@ -20,8 +20,7 @@ public class Principal {
 		System.out.println("2 - Cadastro de Refeições");
 		System.out.println("3 - Consulta da Refeição do dia");
 		System.out.println("4 - Consulta Aluno");
-		System.out
-				.println("5 - Consulta das refeições realizadas na semana por aluno");
+		System.out.println("5 - Consulta das refeições realizadas na semana por aluno");
 
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
@@ -29,14 +28,15 @@ public class Principal {
 
 		int opcao = scanner.nextInt();
 
-		Refeicao refeicao = new Refeicao();
-
+		Refeicao refeicao;
+		Aluno aluno;
+		
 		AlunoService alunoService = new AlunoService();
 		RefeicaoService refeicaoService = new RefeicaoService();
 
 		switch (opcao) {
 		case 1:
-			Aluno aluno = new Aluno();
+			aluno = new Aluno();
 
 			System.out.println("Digite o nome do Aluno");
 			aluno.setNome(scanner.next());
@@ -61,7 +61,8 @@ public class Principal {
 			break;
 
 		case 2:
-
+			refeicao = new Refeicao();
+			
 			System.out.println("Digite o Tipo de Arroz");
 			refeicao.setTipoArroz(scanner.next());
 
@@ -98,6 +99,8 @@ public class Principal {
 			break;
 
 		case 4:
+			aluno = new Aluno();
+			
 			System.out.println("Selecione o tipo de pesquisa:");
 			System.out.println("1 - Nome");
 			System.out.println("2 - Matricula");
@@ -106,12 +109,12 @@ public class Principal {
 			opcao = scanner.nextInt();
 			if (opcao == 1) {
 				System.out.println("Digite o nome completo do aluno");
-				alunoService.pesquisaPorNome(scanner.next());
+				aluno = alunoService.pesquisaPorNome(scanner.next());
 			}
 			if (opcao == 2) {
 				System.out.println("Digite a matricula do aluno");
-				alunoService.pesquisaPorMatricula(scanner.nextInt());
-			} else {
+				aluno = alunoService.pesquisaPorMatricula(scanner.nextInt());
+			} else if(opcao == 3){
 				System.out.println("Escolha entre os cursos");
 				System.out.println("Ciência da Computação");
 				System.out.println("Sistemas da informação");
@@ -120,9 +123,17 @@ public class Principal {
 				System.out.println("Digite o curso");
 
 				System.out.println("Digite o curso");
-				alunoService.pesquisaPorCurso(scanner.next());
+				aluno = alunoService.pesquisaPorCurso(scanner.next());
 			}
 
+			System.out.println("Dados do Aluno");
+			System.out.println("Nome:" + aluno.getNome());
+			System.out.println("Cpf:" + aluno.getCpf());
+			System.out.println("Matrícula:" + aluno.getMatricula());
+			System.out.println("Telefone:" + aluno.getTelefone());
+			System.out.println("Curso:" + aluno.getCurso());
+			System.out.println("Período:" + aluno.getPeriodo());
+			
 			break;
 		default:
 			break;
