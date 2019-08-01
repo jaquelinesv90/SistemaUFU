@@ -5,11 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import enumerador.DiaEnum;
 import model.Aluno;
 import model.Refeicao;
-import service.AlunoService;
-import service.RefeicaoService;
+import model.Registro;
+import enumerador.DiaEnum;
 
 //
 public class Principal {
@@ -17,11 +16,12 @@ public class Principal {
 	public static void main(String[] args) throws SQLException {
 
 		System.out.println("Sistema da Universidade Federal de Uberlândia");
-		System.out.println("1 - Cadastro de alunos");//
-		System.out.println("2 - Cadastro de Refeições");//
+		System.out.println("1 - Cadastro de alunos");
+		System.out.println("2 - Cadastro de Refeições");
 		System.out.println("3 - Consulta da Refeição do dia");
-		System.out.println("4 - Consulta Aluno");//
-		System.out.println("5 - Consulta das refeições realizadas na semana por aluno");
+		System.out.println("4 - Consulta Aluno");
+		System.out.println("5 - Registrar refeição");
+		System.out.println("6 - Consulta das refeições realizadas na semana por aluno");
 
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
@@ -31,10 +31,12 @@ public class Principal {
 
 		Refeicao refeicao;
 		Aluno aluno;
+		Registro registro;
 		
-		AlunoService alunoService = new AlunoService();
-		RefeicaoService refeicaoService = new RefeicaoService();
-
+		AlunoController alunoController = new AlunoController();
+		RefeicaoController refeicaoController = new RefeicaoController();
+		RegistroController registroController = new RegistroController();
+		
 		switch (opcao) {
 		case 1:
 			aluno = new Aluno();
@@ -57,7 +59,7 @@ public class Principal {
 			System.out.println("Digite o período");
 			aluno.setPeriodo(scanner.nextInt());
 
-			alunoService.salvar(aluno);
+			alunoController.salvar(aluno);
 
 			break;
 
@@ -86,6 +88,7 @@ public class Principal {
 			
 			opcao = 0;
 			opcao = scanner.nextInt();
+			
 			if(opcao == 1){
 				refeicao.setDiaSemana(DiaEnum.SEGUNDA.getDescricao());
 			}
@@ -109,23 +112,21 @@ public class Principal {
 				refeicao.setDiaSemana(DiaEnum.SABADO.getDescricao());
 			}
 
-			refeicaoService.salvar(refeicao);
+			refeicaoController.salvar(refeicao);
 
 			break;
 
 		case 3:
 			String formatter = new SimpleDateFormat("EEEE").format(new Date());
-			System.out.print(formatter);
-
 			refeicao = new Refeicao();
 
-			refeicao = refeicaoService.consultaPorDia(formatter);
+			refeicao = refeicaoController.consultaPorDia(formatter);
 
-			System.out.println("Cardápio do dia");
-			System.out.println("Tipo de Arroz:" + refeicao.getTipoArroz());
-			System.out.println("Tipo de Feijão:" + refeicao.getTipoFeijao());
-			System.out.println("Tipo de Carne:" + refeicao.getTipoCarne());
-			System.out.println("Tipo de Salada:" + refeicao.getTipoSalada());
+			System.out.println("Cardápio do dia :"+ formatter);
+			System.out.println("Tipo de Arroz: " + refeicao.getTipoArroz());
+			System.out.println("Tipo de Feijão: " + refeicao.getTipoFeijao());
+			System.out.println("Tipo de Carne: " + refeicao.getTipoCarne());
+			System.out.println("Tipo de Salada: " + refeicao.getTipoSalada());
 
 			break;
 
@@ -140,14 +141,14 @@ public class Principal {
 			opcao = scanner.nextInt();
 			if (opcao == 1) {
 				System.out.println("Digite o nome completo do aluno");
-				aluno = alunoService.pesquisaPorNome(scanner.next());
+				aluno = alunoController.pesquisaPorNome(scanner.next());
 			}
 			if (opcao == 2) {
 				System.out.println("Digite a matricula do aluno");
-				aluno = alunoService.pesquisaPorMatricula(scanner.nextInt());
+				aluno = alunoController.pesquisaPorMatricula(scanner.nextInt());
 			} else if(opcao == 3){
 				System.out.println("Digite o curso");
-				aluno = alunoService.pesquisaPorCurso(scanner.next());
+				aluno = alunoController.pesquisaPorCurso(scanner.next());
 			}
 
 			System.out.println("Dados do Aluno");
@@ -157,6 +158,45 @@ public class Principal {
 			System.out.println("Telefone:" + aluno.getTelefone());
 			System.out.println("Curso:" + aluno.getCurso());
 			System.out.println("Período:" + aluno.getPeriodo());
+			
+			break;
+			
+		case 5:
+			opcao = 0;
+			
+			registro = new Registro();
+
+			System.out.println("Digite o nome do Aluno");
+			registro.setNomeAluno(scanner.next());
+
+			System.out.println("Digite a matrícula");
+			registro.setMatricula(scanner.nextInt());
+			
+			String formatter2 = new SimpleDateFormat("EEEE").format(new Date());
+			registro.setDiaRefeicao(formatter2);
+			
+			registroController.salvar(registro);
+			break;
+			
+		case 6:
+			registro = new Registro();
+			
+			System.out.println("Selecione o tipo de pesquisa:");
+			System.out.println("1 - Nome");
+			System.out.println("2 - Matricula");
+			opcao = 0;
+			opcao = scanner.nextInt();
+			
+			if (opcao == 1) {
+				System.out.println("Digite o nome completo do aluno");
+				registro.setNomeAluno(scanner.next());
+			}
+			if (opcao == 2) {
+				System.out.println("Digite a matricula do aluno");
+				registro.setMatricula(scanner.nextInt());
+			}
+			
+			registroController.consultarRegistros(registro);
 			
 			break;
 		default:

@@ -23,3 +23,11 @@ CREATE TABLE public.refeicao
   tipoSalada text,
   diaSemana   text
 )
+
+CREATE TABLE public.registro
+(
+   idRegistro SERIAL PRIMARY KEY,
+   nomeAluno  text,
+   matricula  bigint,
+   diaRefeicao text
+)
