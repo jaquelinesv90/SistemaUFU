@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class RegistroDao {
 					.prepareStatement(sql);
 			stmt.setString(1, registro.getNomeAluno());
 			stmt.setInt(2, registro.getMatricula());
-			stmt.setString(3, registro.getDiaRefeicao());
+			stmt.setDate(3, (Date) registro.getDiaRefeicao());
 
 			stmt.execute();
 			stmt.close();
@@ -30,41 +31,32 @@ public class RegistroDao {
 	}
 	
 	
-	public List<Registro> consultarRegistros(Registro registro){
+	public List<Registro> consultaAlunoPorNome(String nome){
 		List<Registro> listRegistro = new ArrayList<>();
 		
 		try {
-			String sql= "";
-			
-			if(!registro.getNomeAluno().equals("")){
-				 sql = "select * from registro r  where r.nomeAluno like ?";
-			}else{
-				 sql = "select * from registro r  where r.matricula =  ?";
-			}
-			
+			String sql = "";
+
+			sql = "select * from registro r  where r.nomeAluno like '%" + nome
+					+ "%'";
+
 			PreparedStatement stmt = ConnectionFactory.getConnectionFactory()
 					.prepareStatement(sql);
-			
-			if(!registro.getNomeAluno().equals("")){
-				stmt.setString(1, registro.getNomeAluno());
-			}else{
-				stmt.setInt(1, registro.getMatricula());
-			}	
-			
+
 			stmt.execute();
-			
-			 ResultSet resultado = stmt.executeQuery();
-			 
-			  while(resultado.next()){
-				  Registro reg = new Registro();
-				  reg.setIdRegistro(resultado.getInt("idRegistro"));
-				  reg.setNomeAluno(resultado.getString("nomeAluno"));		
-				  reg.setMatricula(resultado.getInt("matricula"));
-				  reg.setDiaRefeicao(resultado.getString("diaRefeicao"));
-				  
-				  listRegistro.add(reg);
-			  }
-			   		   
+
+			ResultSet resultado = stmt.executeQuery();
+
+			while (resultado.next()) {
+				Registro reg = new Registro();
+				reg.setIdRegistro(resultado.getInt("idRegistro"));
+				reg.setNomeAluno(resultado.getString("nomeAluno"));
+				reg.setMatricula(resultado.getInt("matricula"));
+				reg.setDiaRefeicao(resultado.getDate("diaRefeicao"));
+
+				listRegistro.add(reg);
+			}
+
 			stmt.close();
 
 		} catch (Exception e) {
@@ -72,4 +64,40 @@ public class RegistroDao {
 		}
 		return listRegistro;
 	}
+	
+	public List<Registro> consultaAlunoPorMatricula(int matricula) {
+
+		List<Registro> listRegistro = new ArrayList<>();
+
+		try {
+			String sql = "";
+
+			sql = "select * from registro r  where r.matricula = " + matricula;
+
+			PreparedStatement stmt = ConnectionFactory.getConnectionFactory()
+					.prepareStatement(sql);
+
+			stmt.execute();
+
+			ResultSet resultado = stmt.executeQuery();
+
+			while (resultado.next()) {
+				Registro reg = new Registro();
+				reg.setIdRegistro(resultado.getInt("idRegistro"));
+				reg.setNomeAluno(resultado.getString("nomeAluno"));
+				reg.setMatricula(resultado.getInt("matricula"));
+				reg.setDiaRefeicao(resultado.getDate("diaRefeicao"));
+
+				listRegistro.add(reg);
+			}
+
+			stmt.close();
+
+		} catch (Exception e) {
+			System.out.print(Mensagens.erroConsultar(e));
+		}
+		return listRegistro;
+
+	}
+	
 }

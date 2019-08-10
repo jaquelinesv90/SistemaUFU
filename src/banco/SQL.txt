@@ -31,3 +31,5 @@ CREATE TABLE public.registro
    matricula  bigint,
    diaRefeicao text
 )
+
+ALTER TABLE aluno ADD CONSTRAINT unique_matricula UNIQUE (matricula);

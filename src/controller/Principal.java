@@ -2,7 +2,9 @@ package controller;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 import model.Aluno;
@@ -172,14 +174,14 @@ public class Principal {
 			System.out.println("Digite a matrícula");
 			registro.setMatricula(scanner.nextInt());
 			
-			String formatter2 = new SimpleDateFormat("EEEE").format(new Date());
-			registro.setDiaRefeicao(formatter2);
+			registro.setDiaRefeicao(new Date());
 			
 			registroController.salvar(registro);
 			break;
 			
 		case 6:
-			registro = new Registro();
+			String nome = "";
+			int matricula = 0;
 			
 			System.out.println("Selecione o tipo de pesquisa:");
 			System.out.println("1 - Nome");
@@ -189,14 +191,13 @@ public class Principal {
 			
 			if (opcao == 1) {
 				System.out.println("Digite o nome completo do aluno");
-				registro.setNomeAluno(scanner.next());
+				nome = scanner.next();
 			}
 			if (opcao == 2) {
 				System.out.println("Digite a matricula do aluno");
-				registro.setMatricula(scanner.nextInt());
+				matricula = scanner.nextInt();
 			}
-			
-			registroController.consultarRegistros(registro);
+			alunoController.consultaAlunoPorNome(nome);
 			
 			break;
 		default:

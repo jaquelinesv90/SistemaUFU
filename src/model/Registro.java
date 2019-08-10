@@ -1,16 +1,17 @@
 package model;
 
+import java.util.Date;
+
 public class Registro {
 	
 	private int idRegistro;
 	private String nomeAluno;
 	private int matricula;
-	private String diaRefeicao;
+	private Date diaRefeicao;
 	
 	public Registro(){
 		
 	}
-	
 		
 	public int getIdRegistro() {
 		return idRegistro;
@@ -24,7 +25,7 @@ public class Registro {
 		return nomeAluno;
 	}
 	public void setNomeAluno(String nomeAluno) {
-		this.nomeAluno = nomeAluno;
+		this.nomeAluno = nomeAluno.toUpperCase();
 	}
 	
 	public int getMatricula() {
@@ -35,10 +36,12 @@ public class Registro {
 		this.matricula = matricula;
 	}
 
-	public String getDiaRefeicao() {
+
+	public Date getDiaRefeicao() {
 		return diaRefeicao;
 	}
-	public void setDiaRefeicao(String diaRefeicao) {
+
+	public void setDiaRefeicao(Date diaRefeicao) {
 		this.diaRefeicao = diaRefeicao;
 	}
 }

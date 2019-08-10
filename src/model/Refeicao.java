@@ -18,7 +18,7 @@ public class Refeicao {
 	}
 
 	public void setTipoArroz(String tipoArroz) {
-		this.tipoArroz = tipoArroz;
+		this.tipoArroz = tipoArroz.toUpperCase();
 	}
 
 	public String getTipoFeijao() {
@@ -26,7 +26,7 @@ public class Refeicao {
 	}
 
 	public void setTipoFeijao(String tipoFeijao) {
-		this.tipoFeijao = tipoFeijao;
+		this.tipoFeijao = tipoFeijao.toUpperCase();
 	}
 
 	public String getTipoCarne() {
@@ -34,7 +34,7 @@ public class Refeicao {
 	}
 
 	public void setTipoCarne(String tipoCarne) {
-		this.tipoCarne = tipoCarne;
+		this.tipoCarne = tipoCarne.toUpperCase();
 	}
 
 	public String getTipoSalada() {
@@ -42,7 +42,7 @@ public class Refeicao {
 	}
 
 	public void setTipoSalada(String tipoSalada) {
-		this.tipoSalada = tipoSalada;
+		this.tipoSalada = tipoSalada.toUpperCase();
 	}
 
 	public String getDiaSemana() {
@@ -50,7 +50,7 @@ public class Refeicao {
 	}
 
 	public void setDiaSemana(String diaSemana) {
-		this.diaSemana = diaSemana;
+		this.diaSemana = diaSemana.toUpperCase();
 	}
 
 	public int getIdRefeicao() {

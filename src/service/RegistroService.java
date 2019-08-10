@@ -17,7 +17,7 @@ public class RegistroService implements GenericInterface {
 		dao.salvar((Registro)entidade);
 	}
 
-	public List<Registro> consultarRegistros(Registro registro){
-		return dao.consultarRegistros(registro);
+	public List<Registro> consultaAlunoPorNome(String nome){
+		return dao.consultaAlunoPorNome(nome);
 	}
 }
